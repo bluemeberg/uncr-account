@@ -2,6 +2,7 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
 import Web3 from "web3";
 import UNCRAgent from "../UNCRAgent.json";
+import "./Navbar.scss";
 const Navbar = () => {
   const handleWalletConnet = async () => {
     const provider = await detectEthereumProvider();
