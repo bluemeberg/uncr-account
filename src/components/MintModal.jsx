@@ -4,8 +4,8 @@ function MintModal(props) {
   return (
     <div className="Modal">
       <div className="modalMintBody">
-        Please wait just seconds <br />
-        during minting a Agent
+        Please wait just few seconds <br />
+        during creating an account.
         <div className="modalLoading">
           <img src={loading} />
         </div>

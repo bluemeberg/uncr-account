@@ -46,7 +46,7 @@ const Agent = () => {
           You have become an agent of UNCR.
         </div>
         <div className="agent_go_back">
-          Please go back to the UNCR 1.0,
+          Please go back to the UNCR app,
           <br /> Complete the account creation process.
         </div>
         <div className="agent_close_btn">Close</div>
