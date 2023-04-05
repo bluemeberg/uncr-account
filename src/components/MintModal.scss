@@ -1,0 +1,94 @@
+/* modal창 외부화면 */
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000000;
+}
+
+/* modal창 */
+.modalBody {
+  overflow-y: scroll;
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  padding: 40px;
+  text-align: center;
+  background-color: #14171e;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+}
+
+.modalMyNFTBody {
+  position: absolute;
+  width: 350px;
+  padding: 40px;
+  text-align: center;
+  background-color: #14171e;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  z-index: 1000000;
+  color: white;
+}
+.modalWalletBody {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 10%;
+  right: 5%;
+  width: 400px;
+  padding: 10px;
+  text-align: center;
+  background-color: #14171e;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  z-index: 1000000;
+}
+.modalLoading {
+  direction: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-top: 10px;
+    width: 50px;
+  }
+}
+
+.modalMintBody {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 76%;
+  height: 120px;
+  padding: 10px;
+  text-align: center;
+  background-color: #14171e;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  z-index: 1000000;
+  color: white;
+}
+
+#modalCloseBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+#modalCloseBtn:hover {
+  cursor: pointer;
+}

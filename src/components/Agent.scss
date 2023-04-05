@@ -1,0 +1,99 @@
+.agentContainer {
+  flex-direction: column;
+  display: flex;
+  height: 100vh;
+  .header {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    background: "#000000";
+    margin-left: 16px;
+    margin-bottom: 12px;
+    .header_logo {
+      justify-content: center;
+    }
+  }
+  .agent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+    .agent_thumbnail {
+      img {
+        align-items: center;
+        justify-content: center;
+        width: 312px;
+        height: 312px;
+        border-radius: 10px;
+      }
+    }
+    .agent_number {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 32px;
+      /* identical to box height, or 145% */
+
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.01em;
+
+      /* Black/Black_000 */
+      margin-top: 28px;
+      color: #000000;
+    }
+    .agent_disclaimer {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      /* or 138% */
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: 0.01em;
+
+      /* Black/Black_066 */
+
+      color: rgba(0, 0, 0, 0.66);
+    }
+    .agent_go_back {
+      flex: 1;
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      /* or 138% */
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: 0.01em;
+      text-decoration: underline 1px;
+      /* Black/Black_066 */
+
+      color: rgba(0, 0, 0, 0.75);
+    }
+    .agent_close_btn {
+      background: #7400db;
+      border-radius: 10px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      /* identical to box height, or 157% */
+      width: 84%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      letter-spacing: 0.01em;
+      height: 52px;
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+  }
+}
