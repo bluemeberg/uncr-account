@@ -43,10 +43,10 @@ const Mint = () => {
         .balanceOf(walletAddress)
         .call();
       console.log(totalSupply);
-      const AgentID = await contract.methods
-        .tokenOfOwnerByIndex(walletAddress, totalSupply - 1)
-        .call();
-      console.log(AgentID);
+      // const AgentID = await contract.methods
+      //   .tokenOfOwnerByIndex(walletAddress, totalSupply - 1)
+      //   .call();
+      // console.log(AgentID);
       setIsLoading(true);
       try {
         await contract.methods

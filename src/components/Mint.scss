@@ -29,9 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 1;
     .mintTitle {
-      font-family: "Noto Sans KR";
       font-style: normal;
       font-weight: 700;
       font-size: 40px;
@@ -47,7 +45,6 @@
       margin-top: 36px;
     }
     .mintSubtitle {
-      font-family: "Roboto";
       font-style: normal;
       font-weight: 400;
       font-size: 20px;
@@ -57,9 +54,7 @@
       align-items: center;
       text-align: center;
       letter-spacing: 0.01em;
-
       /* White/White_075 */
-
       color: rgba(255, 255, 255, 0.75);
     }
     .mintSubBG {
