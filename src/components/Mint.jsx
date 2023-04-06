@@ -133,7 +133,11 @@ const Mint = () => {
         //     navigate("/agent", {});
         //   });
       } catch (error) {
-        console.log(error);
+        if (error.code === "UNSUPPORTED_OPERATION") {
+          window.alert(
+            "You might change the wallet connection on Metamask. Please make sure the connection to tab the wallet address button"
+          );
+        }
       } finally {
         setIsLoading(false);
       }
