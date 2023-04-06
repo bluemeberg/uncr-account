@@ -7,61 +7,131 @@ import MintBG1 from "../assets/MintSubBG.svg";
 import "./Mint.scss";
 import { useNavigate } from "react-router-dom";
 import MintModal from "./MintModal";
+import { ethers } from "ethers";
 const Mint = () => {
   const [walletAddress, setWalletAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [contract, setContract] = useState();
   const handleWalletConnet = async () => {
-    const provider = await detectEthereumProvider();
-    if (provider) {
-      console.log("ethereum wallet is connected");
-      window.web3 = new Web3(provider);
-      if (window.web3) {
-        const account = await window.web3.eth.requestAccounts();
-        console.log(account);
+    // const provider = await detectEthereumProvider();
+    // if (provider) {
+    //   console.log("ethereum wallet is connected");
+    //   window.web3 = new Web3(provider);
+    //   if (window.web3) {
+    //     const account = await window.web3.eth.requestAccounts();
+    //     console.log(account);
+    //   }
+    // } else {
+    //   window.alert("connect metamask");
+    //   console.log("no ethereum wallet detected");
+    // }
+    // const accounts = await window.web3.eth.getAccounts();
+    // setWalletAddress(accounts[0]);
+    // const netWorkId = await window.web3.eth.net.getId();
+    // console.log(netWorkId);
+    try {
+      if (typeof window.ethereum !== "undefined") {
+        console.log("button");
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+
+        const contract = new ethers.Contract(
+          "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32",
+          UNCRAgent.abi,
+          provider
+        );
+        console.log(contract.address);
+        console.log(signer.provider.provider.selectedAddress.slice(0, 10));
+        const name = await contract.name();
+        console.log(name);
+        setWalletAddress(signer.provider.provider.selectedAddress);
+        // const data = await contract.balanceOf(
+        //   signer.provider.provider.selectedAddress
+        // );
+        // console.log(data.toString());
       }
-    } else {
-      window.alert("connect metamask");
-      console.log("no ethereum wallet detected");
+    } catch (error) {
+      console.log(error);
+      if (error.code === "CALL_EXCEPTION" || error.code === "NETWORK_ERROR") {
+        window.alert("Please change to Goerli testnet on your metamask.");
+        await window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0x5" }],
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(
+          "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32",
+          UNCRAgent.abi,
+          provider
+        );
+        console.log(contract.address);
+        console.log(signer.provider.provider.selectedAddress.slice(0, 10));
+        const name = await contract.name();
+        console.log(name);
+        setWalletAddress(signer.provider.provider.selectedAddress);
+      }
     }
-    const accounts = await window.web3.eth.getAccounts();
-    setWalletAddress(accounts[0]);
-    const netWorkId = await window.web3.eth.net.getId();
-    console.log(netWorkId);
   };
 
   const handleMint = async () => {
     if (walletAddress !== "") {
-      const netWorkId = await window.web3.eth.net.getId();
-      console.log(netWorkId);
-      const abi = UNCRAgent.abi;
-      const address = "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32";
-      const contract = new window.web3.eth.Contract(abi, address);
-      setContract(contract);
-      const totalSupply = await contract.methods
-        .balanceOf(walletAddress)
-        .call();
-      console.log(totalSupply);
-      // const AgentID = await contract.methods
-      //   .tokenOfOwnerByIndex(walletAddress, totalSupply - 1)
+      // const netWorkId = await window.web3.eth.net.getId();
+      // console.log(netWorkId);
+      // const abi = UNCRAgent.abi;
+      // const address = "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32";
+      // const contract = new window.web3.eth.Contract(abi, address);
+      // setContract(contract);
+      // const totalSupply = await contract.methods
+      //   .balanceOf(walletAddress)
       //   .call();
-      // console.log(AgentID);
-      setIsLoading(true);
+      // console.log(totalSupply);
+      // // const AgentID = await contract.methods
+      // //   .tokenOfOwnerByIndex(walletAddress, totalSupply - 1)
+      // //   .call();
+      // // console.log(AgentID);
+      // setIsLoading(true);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const result = await signer.getBalance();
+      console.log(result.toString());
+      if (result.toString() === "0") {
+        window.alert(
+          "You need a few goerli ethereum for gas fee. Please get the goerli faucet to goerlifauce.com"
+        );
+        return;
+      }
+      const contract = new ethers.Contract(
+        "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32",
+        UNCRAgent.abi,
+        signer
+      );
       try {
-        await contract.methods
-          .accountCreation(1)
-          .send({ from: walletAddress })
-          .on("receipt", (receipt) => {
-            console.log(receipt);
-          })
-          .on("confirmation", (confNumber) => {
-            setIsLoading(false);
-            console.log(confNumber);
-          })
-          .then(() => {
-            navigate("/agent", {});
-          });
+        setIsLoading(true);
+        const transaction = await contract.accountCreation(1, {
+          from: walletAddress,
+        });
+        await transaction.wait().then(() => {
+          setIsLoading(false);
+          navigate("/agent", {});
+        });
+        // await contract.methods
+        //   .accountCreation(1)
+        //   .send({ from: walletAddress })
+        //   .on("receipt", (receipt) => {
+        //     console.log(receipt);
+        //   })
+        //   .on("confirmation", (confNumber) => {
+        //     setIsLoading(false);
+        //     console.log(confNumber);
+        //   })
+        //   .then(() => {
+        //     navigate("/agent", {});
+        //   });
       } catch (error) {
         console.log(error);
       } finally {
