@@ -1,5 +1,5 @@
 import detectEthereumProvider from "@metamask/detect-provider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 
 import UNCRAgent from "../UNCRAgent.json";
@@ -145,6 +145,9 @@ const Mint = () => {
       window.alert("Please connect metamask");
     }
   };
+  useEffect(() => {
+    handleWalletConnet();
+  }, []);
   console.log("wallet", walletAddress);
   return (
     <div className="container">
