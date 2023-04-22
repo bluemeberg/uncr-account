@@ -69,6 +69,7 @@ const Mint = () => {
                 symbol: "SPETH",
                 decimals: 18,
               },
+              iconUrls: ["https://deluxe-moonbeam-cb4221.netlify.app/0.png"],
             },
           ],
         });
