@@ -96,10 +96,6 @@ const Mint = () => {
 
   const handleMint = async () => {
     if (walletAddress !== "") {
-      window.alert(
-        "You need a few goerli ethereum for gas fee. Please get the goerli faucet to goerlifauce.com"
-      );
-      window.open("https://sepoliafaucet.com/");
       // const netWorkId = await window.web3.eth.net.getId();
       // console.log(netWorkId);
       // const abi = UNCRAgent.abi;
@@ -121,8 +117,12 @@ const Mint = () => {
       const result = await signer.getBalance();
       console.log(result.toString());
       if (result.toString() === "0") {
+        window.alert("You need a few sepolia ethereum for gas fee.");
         window.alert(
-          "You need a few goerli ethereum for gas fee. Please get the goerli faucet to goerlifauce.com"
+          "We go to sepoliafuacet for getting gas fee. And when you sign up to Alchemy, ****This browser don't support google signing."
+        );
+        window.alert(
+          "And it might take long time when sign up or sign in Alchemy"
         );
         window.open("https://sepoliafaucet.com/");
         return;
