@@ -54,7 +54,7 @@ const Mint = () => {
     } catch (error) {
       console.log(error);
       if (error.code === "CALL_EXCEPTION" || error.code === "NETWORK_ERROR") {
-        window.alert("Please change to Goerli testnet on your metamask.");
+        window.alert("Please change to UNCR sepolia testnet on your metamask.");
         await window.ethereum.request({
           method: "wallet_addEthereumChain",
           params: [
@@ -96,6 +96,10 @@ const Mint = () => {
 
   const handleMint = async () => {
     if (walletAddress !== "") {
+      window.alert(
+        "You need a few goerli ethereum for gas fee. Please get the goerli faucet to goerlifauce.com"
+      );
+      window.open("https://sepoliafaucet.com/");
       // const netWorkId = await window.web3.eth.net.getId();
       // console.log(netWorkId);
       // const abi = UNCRAgent.abi;
@@ -120,6 +124,7 @@ const Mint = () => {
         window.alert(
           "You need a few goerli ethereum for gas fee. Please get the goerli faucet to goerlifauce.com"
         );
+        window.open("https://sepoliafaucet.com/");
         return;
       }
       const contract = new ethers.Contract(

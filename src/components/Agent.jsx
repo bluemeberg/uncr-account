@@ -29,7 +29,7 @@ const Agent = () => {
   useEffect(() => {
     const result = getNFTBalance();
   });
-  const src = `https://uncr.io/${agentID}.png`;
+  const src = `https://main--deluxe-moonbeam-cb4221.netlify.app/${agentID}.png`;
   return (
     <div className="agentContainer">
       <div className="header">
