@@ -36,7 +36,6 @@ const Mint = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
-
         const contract = new ethers.Contract(
           "0xee001aC0A6Ac57ddB6442dEf4aA6CE9f92D05869",
           UNCRAgent.abi,
@@ -57,14 +56,31 @@ const Mint = () => {
       if (error.code === "CALL_EXCEPTION" || error.code === "NETWORK_ERROR") {
         window.alert("Please change to Goerli testnet on your metamask.");
         await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0xaa36a7",
+              chainName: "UNCR_CBT_Sepolia",
+              rpcUrls: [
+                "https://sepolia.infura.io/v3/3ebf9ab81238402fb50d3dba748fd948",
+              ] /* ... */,
+              nativeCurrency: {
+                name: "Sepolia ETH",
+                symbol: "SPETH",
+                decimals: 18,
+              },
+            },
+          ],
+        });
+        await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: "0x5" }],
+          params: [{ chainId: "0xaa36a7" }],
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(
-          "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32",
+          "0xee001aC0A6Ac57ddB6442dEf4aA6CE9f92D05869",
           UNCRAgent.abi,
           provider
         );
