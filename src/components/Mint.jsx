@@ -38,7 +38,7 @@ const Mint = () => {
         const signer = provider.getSigner();
 
         const contract = new ethers.Contract(
-          "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32",
+          "0xee001aC0A6Ac57ddB6442dEf4aA6CE9f92D05869",
           UNCRAgent.abi,
           provider
         );
@@ -106,7 +106,7 @@ const Mint = () => {
         return;
       }
       const contract = new ethers.Contract(
-        "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32",
+        "0xee001aC0A6Ac57ddB6442dEf4aA6CE9f92D05869",
         UNCRAgent.abi,
         signer
       );

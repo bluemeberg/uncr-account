@@ -15,7 +15,7 @@ const Agent = () => {
     const account = await window.web3.eth.requestAccounts();
     console.log(account);
     const abi = UNCRAgent.abi;
-    const address = "0x5BF471e55474fe1bcc0ACE26f65FB13278156b32";
+    const address = "0xee001aC0A6Ac57ddB6442dEf4aA6CE9f92D05869";
     const contract = new window.web3.eth.Contract(abi, address);
     const totalSupply = await contract.methods.balanceOf(account[0]).call();
     console.log(totalSupply);
