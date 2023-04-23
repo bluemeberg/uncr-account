@@ -41,7 +41,35 @@ const Mint = () => {
           UNCRAgent.abi,
           provider
         );
-        console.log(contract.address);
+        console.log("contract address", contract.address);
+        console.log(signer.provider.provider.chainId);
+        if (signer.provider.provider.chainId === "0x5") {
+          window.alert(
+            "Please change to UNCR sepolia testnet on your metamask."
+          );
+          await window.ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: "0xaa36a7",
+                chainName: "UNCR_CBT_Sepolia",
+                rpcUrls: [
+                  "https://sepolia.infura.io/v3/3ebf9ab81238402fb50d3dba748fd948",
+                ] /* ... */,
+                nativeCurrency: {
+                  name: "Sepolia ETH",
+                  symbol: "SPETH",
+                  decimals: 18,
+                },
+                iconUrls: ["https://deluxe-moonbeam-cb4221.netlify.app/0.png"],
+              },
+            ],
+          });
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0xaa36a7" }],
+          });
+        }
         console.log(signer.provider.provider.selectedAddress.slice(0, 10));
         const name = await contract.name();
         console.log(name);
