@@ -13,19 +13,6 @@
   z-index: 1000000;
 }
 
-/* modal창 */
-.modalBody {
-  overflow-y: scroll;
-  position: absolute;
-  width: 800px;
-  height: 500px;
-  padding: 40px;
-  text-align: center;
-  background-color: #14171e;
-  border-radius: 10px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-}
-
 .modalMyNFTBody {
   position: absolute;
   width: 350px;

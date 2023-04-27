@@ -83,5 +83,37 @@
       color: #ffffff;
       margin-bottom: 40px;
     }
+    .walletGuide {
+      height: 100%;
+      .waletGuideTitle {
+        color: white;
+        margin-top: 40px;
+      }
+      .waletGuideText {
+        color: white;
+        margin-bottom: 40px;
+        margin-top: 10px;
+      }
+      .waletGuideText2 {
+        color: white;
+        margin-bottom: 40px;
+        margin-top: 40px;
+      }
+      .waletGuideText3 {
+        color: white;
+        margin-bottom: 40px;
+        margin-top: 40px;
+      }
+      .walletGuideButton {
+        margin-top: 20px;
+        background-color: black;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+      .waletGuideText3 {
+      }
+    }
   }
 }

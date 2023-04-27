@@ -1,5 +1,6 @@
 import "./MintModal.scss";
 import loading from "../assets/loading7.svg";
+import { useEffect } from "react";
 function MintModal(props) {
   return (
     <div className="Modal">
